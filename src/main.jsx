@@ -1,11 +1,14 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import "./App.css";
-// import App from "./App";
+const App = lazy(() => import("./App"));
 import i18next from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
+// styles
+import "bootstrap/dist/js/bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "flag-icon-css/css/flag-icons.min.css";
 
 // i18next multi language
 i18next
@@ -16,12 +19,13 @@ i18next
   // tillarni json filarini ishlatish uchun HttpApi
   .use(HttpApi)
   .init({
-    supportedLngs: ["en", "uz"],
+    // web site qanday tilarni tarjima qilishi munkun shuni korsatish kerak
+    supportedLngs: ["en", "uz", "ar"],
     // hozirda turgan til korsatiladi youki ozgartiriladi
     fallbackLng: "en",
     detection: {
       // tilni ozgartirish usullari
-      order: ["cookie", "htmlTag", "localStorage", "subdomain", "path"],
+      order: ["path", "cookie", "htmlTag", "localStorage", "subdomain"],
       // bravzerni kashi
       caches: ["cookie"],
     },
@@ -33,14 +37,27 @@ i18next
   });
 document.documentElement.lang = localStorage.getItem("i18nextLng");
 
-function App() {
-  const { t } = useTranslation();
-
-  return <h2>{t("welcome_to_react")}</h2>;
-}
+const loadingMarkup = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      height: "100vh",
+      position: "absolute",
+      top: "0px",
+      left: "0px",
+    }}
+  >
+    <div className="loader"></div>
+  </div>
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={loadingMarkup}>
+      <App />
+    </Suspense>
   </React.StrictMode>
 );

@@ -1,3 +1,6 @@
 {
-  "welcome_to_react": "Welcome to React and react-i18next"
+  "app__title": "Title",
+  "language": "Language",
+  "weblcome__message": "Welcome",
+  "days__since__release": "it's been {{number_of_days}} days since this video was relative"
 }

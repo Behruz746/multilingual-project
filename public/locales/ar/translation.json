@@ -1,0 +1,6 @@
+{
+  "app__title": "عنوان",
+  "language": "لغة",
+  "weblcome__message": "مرحباً",
+  "days__since__release": "لقد مر {{number_of_days}} يوم منذ أن أصبح هذا الفيديو نسبيًا"
+}

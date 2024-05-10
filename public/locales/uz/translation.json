@@ -1,3 +1,6 @@
 {
-  "welcome_to_react": "Hushkelib siz React va react-i18nextga"
+  "app__title": "Sarlavha",
+  "language": "Til",
+  "weblcome__message": "Hushkelibsiz",
+  "days__since__release": "Bu video nisbatan boʻlganiga {{number_of_days}} kun boʻldi"
 }
